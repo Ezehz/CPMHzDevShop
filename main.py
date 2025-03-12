@@ -1,19 +1,24 @@
 #!/usr/bin/python
 
+from pystyle import Box
 import random
 import requests
 from time import sleep
 import os, signal, sys
+from pyfiglet import figlet_format
 from rich.console import Console
 from rich.prompt import Prompt, IntPrompt
 from rich.text import Text
 from rich.style import Style
 import pystyle
 from pystyle import Colors, Colorate
-from cpmhzshop import CPMHzShop
+from pystyle import Center
+import datetime
 
-__CHANNEL_USERNAME__ = "hztoolshop"
-__GROUP_USERNAME__   = "hztoolshopchat"
+from cpmhzdevshop import CPMHzdevshop
+
+__CHANNEL_USERNAME__ = "t.me/HzToolshop"
+__GROUP_USERNAME__   = "t.me/HzToolshopChat"
 
 def signal_handler(sig, frame):
     print("\n Bye Bye...")
@@ -38,9 +43,11 @@ def gradient_text(text, colors):
 
 def banner(console):
     os.system('cls' if os.name == 'nt' else 'clear')
-    brand_name =  "Car Parking Multiplayer 1 Tool - @Ezehz"
+    brand_name = figlet_format('CPMHzDev', font='bloody')
     colors = [
         "rgb(255,0,0)", "rgb(255,69,0)", "rgb(255,140,0)", "rgb(255,215,0)", "rgb(173,255,47)", 
+        "rgb(0,255,0)", "rgb(0,255,255)", "rgb(0,191,255)", "rgb(0,0,255)", "rgb(139,0,255)",
+        "rgb(255,0,255)"
     ]
     colorful_text = gradient_text(brand_name, colors)
     console.print(colorful_text)
@@ -131,7 +138,7 @@ if __name__ == "__main__":
         acc_password = prompt_valid_value("[bold][?] Account Password[/bold]", "Password", password=False)
         acc_access_key = prompt_valid_value("[bold][?] Access Key[/bold]", "Access Key", password=False)
         console.print("[bold cyan][%] Trying to Login[/bold cyan]: ", end=None)
-        cpm = CPMHzShop(acc_access_key)
+        cpm = CPMHzdevshop(acc_access_key)
         login_response = cpm.login(acc_email, acc_password)
         if login_response != 0:
             if login_response == 100:
@@ -640,3 +647,7 @@ if __name__ == "__main__":
             else: continue
             break
         break
+            
+        
+            
+              
